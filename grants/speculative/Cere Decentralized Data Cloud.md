@@ -67,15 +67,18 @@ As a part of SaaS, Cere provides Sandbox for SDK where developers can send event
 This package contains high-level functions for encrypting and decrypting events. 
 Every event has scopes of data and each scope is encrypted or decrypted with a separate key. 
 It allows sharing only the part of the data with third parties by providing them keys for specific scopes.
+
 Encryption flow:
 1. Split event data into scopes.
 2. Encrypt each scope of data with its own key.
 3. Merge encrypted scopes into one object.
 4. Add event metadata (account public key, signature, event ID, timestamp).
+
 Decryption flow:
 1. Read event metadata, extract scopes, and read keys from the configuration.
 2. Decrypt scoped data.
 3. Merge decrypted data into one object.
+
 For the partners who are using the Cere SaaS platform, encryption and decryption operations are explicit, 
 they work with raw data as an input and output. 
 If anyone else wants to connect to the Cere Platform, he can use the Crypto module package 
