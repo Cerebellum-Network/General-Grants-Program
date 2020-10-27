@@ -105,8 +105,17 @@ Please provide the name and registered address of the legal entity executing the
 Please describe the team's relevant experience.  If the project involves development work, then we'd appreciated if you can single out a few interesting code commits made by team members on their past projects. For research-related grants, references to past publications and projects in a related domain are helpful.  
 
 ### Team Code Repos
-* https://github.com/cere-io - private packages, Cere SaaS Paltform
+* https://github.com/cere-io - private packages, Cere SaaS Platform
+    * IPFS DHT
+    * IPFS Service
+    * Crypto Service
+    * Blockchain Service
 * https://github.com/Cerebellum-Network - public packages
+    * [Cere Wallet API (SDK)](https://github.com/Cerebellum-Network/cere-wallet-api)
+    * [Data Cloud API](https://github.com/Cerebellum-Network/data-cloud-api)
+    * [Crypto Service API](https://github.com/Cerebellum-Network/crypto-service-api)
+    * [Data Viewer](https://github.com/Cerebellum-Network/data-viewer)
+    * [Data Cloud Examples](https://github.com/Cerebellum-Network/data-cloud-examples)
 
 ### Team LinkedIn Profiles TODO
 * https://www.linkedin.com/<person_1>
@@ -129,9 +138,10 @@ Please describe the team's relevant experience.  If the project involves develop
 | 0a. | License | MIT |
 | 0b. | Documentation | We will provide a README files inside repositories with instructions of how to build, run and use our services. |
 | 0c. | Testing Guide | The code will have proper unit and integration test coverage to ensure functionality and robustness. In the guide we will describe how to run these tests. | 
-| 1. | Cere DDC API | We will create a service for interaction with a Cere DDC, provide OpenAPI specification and Swagger UI for testing. |  
+| 1. | Cere DDC API | We will create a service for interaction with a Cere DDC, provide OpenAPI specification and Swagger UI for testing. |
 | 2. | Data Viewer | We will create a public web service for exploring the data. |  
-| 3. | Examples | We will create a repository with examples of usage if Cere DDC API. |  
+| 3. | Examples | We will create a repository with examples of usage if Cere DDC API. |
+| 4. | Docker | We will provide docker-compose files with configured services for testing. |
 
 ### Milestone 2 — IPFS DHT
 * **Estimated Duration:** 1 month
