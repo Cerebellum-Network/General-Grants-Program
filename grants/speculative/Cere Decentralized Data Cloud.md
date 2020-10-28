@@ -65,16 +65,37 @@ state changes of the NFT are captured both on chain and also into DDC, going thr
  
 ### Packages
 
+#### High Level
+
+* **Cere SDK** - user onboarding, sending events; public API with open sourced implementations for JavaScript, iOS and Android.
 * **Cere DDC API** - public API for connecting Cere SDK/Substrate wallets.
+* **Crypto Service** - encrypt/decrypt data, part of the Cere SaaS with public API.
+
+#### Cere SaaS Services
+
 * **IPFS DHT Service** - associate/lookup wallets in IPFS clusters, part of the Cere SaaS.
 * **IPFS Service** - write/read into/from IPFS, traverse data, part of the Cere SaaS.
-* **Crypto Service** - encrypt/decrypt data, part of the Cere SaaS with public API.
-* **Cere SDK** - user onboarding, sending events; public API with open sourced implementations for JavaScript, iOS and Android.
 * **Cere Blockchain Service** - write/read into/from Cere Network, part of the Cere SaaS.
+
+#### Standalone
+
 * **Data Viewer** - public web service where everyone who has private key can look at the decrypted data.
 * **Examples** - ready to work solutions/embeddable services for data interaction (working with IPFS, building data pipelines, crypto functions, validation, etc.).
 
-### Cere DDC API operations
+#### Hierarchy and Interactions
+
+* Cere SDK
+    * _calls_ Cere DDC API
+        * _calls_ IPFS DHT Service
+        * _calls_ IPFS Service
+            * _uses_ Crypto Service
+        * _calls_ Blockchain Service
+            * _uses_ Crypto Service
+* Data Viewer
+    * _uses_ Cere DDC API
+    * _uses_ Crypto Service
+
+### Cere DDC API Operations
 1. Sign user/app operation, store associated blob file (_Cere SDK_)
     * Associate wallet with an IPFS cluster, Cere Mainnet by default (_IPFS DHT Service_)
     * Encrypt data (_Crypto Service_)
