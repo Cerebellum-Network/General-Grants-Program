@@ -2,24 +2,68 @@
 
 ## Project Description
 
-Cere Decentralized Data Cloud allows enterprises to keep track of user interactions within the applications 
-in a secure way. User data is encrypted and stored in a distributed decentralized 
-persistence layer. Later, that data can be restored for ETL purposes, shared between partners, 
-validated as a source of truth, or even deleted by user request. Any developer can onboard user data 
-using embedded Cere SDK which is also compatible with other Substrate networks.
-Decentralized Data Cloud is one of the key parts of the Cere SaaS, but we are interested in making it open
-to other developers and Substrate community.
+Cere Decentralized Data Cloud is a blockchain based storage solution that is optimized for capturing user/app 
+interactions which are individually signed and encrypted, along with potential value transfers, to be stored 
+in a tamper-proof and time-capsuled data scheme. This allows for the direct and secure decryption, validation, 
+extraction, transformation, and utilization of such data by trusted or trustless parties, or automated processes, 
+or decentralized data marketplaces.
 
-## Use cases examples
-* Store customer journey in a decentralized network and use it as a source of truth.
-* Extract historical data for indexing (ElasticSearch, Athena, etc.), ETL’ing (Spark, Hadoop, Kafka Streams, etc.), or Machine Learning for business intelligence or creating the new marketplace.
-* User can look at the data collected for him using his private key or Cere Wallet.
-* Validate that all user sessions were signed and went through consensus.
-* Capture (time capsule) for the user’s agreeing on terms and conditions event.
+## Use Case Examples
 
-### Project Details
+### Optimizing For Automated AI/ML Driven Consumer Interactions
+
+Only with Cere DCC’s individually encrypted, tamper-proof (and time capsuled) way of capturing customer interactions 
+data, and storing it along with value transactions on to each user’s individual ledger, can AI/data driven smart 
+engagements or interactions be automated by 3rd party vendors and partners. This fits into the critical needs 
+for today’s consumer enterprises to digitize, automate, and become data-driven.
+
+* Capturing and storing all signed and validated user interaction events into a tamper-proof timeline of 
+“customer journey”, providing a source of truth of 1st party data in raw form. Utilizing blockchain identity 
+abstraction, data encryption, and time-capsuled consensus verifications. 
+* Allowing for highly customized and granular extraction of user(s) datasets upstream into virtual dataset such 
+as indexes (ElasticSearch, SQL, AWS Athena, etc.), ETL’ing (Spark, Hadoop, Kafka Streams, etc.), which can then be 
+directly and dynamically accessed by data services or used by existing product/services.
+* Allowing for granular 3rd party access via permission keys such that AI, Machine Learning, and business intelligence 
+processes can perform federated querying, modeling, and direct computations. Federated access or data re-encryption use 
+cases can both be supported.
+* Businesses/Apps/Partners and even individual consumers can be permissioned to inspect a complete timeline of 
+interactions for any user(s) via apps and tool using Cere embedded wallet.
+* Capturing key user events and interactions such as agreeing to terms or signing verifications along with the relevant 
+material to be both on chain and within DCC.
+
+### Open Data Marketplace (not part of this proposal, but relevant cases)
+
+As Snowflake and its data marketplace are gaining adoption and delivering value for businesses that are integrated into 
+its proprietary ecosystem, an open and decentralized version of such data marketplace which is not locked into a single 
+entity/vendor, but is fully open and interoperable, and powered by smart contracts designed to work within both Cere and 
+Polkadot/Substrate chains.
+
+Although the data marketplace itself is not part of this specific proposal, the following use cases work with DCC
+
+* Next level of efficiency, data security/agility/interoperability to open up direct access of business datasets that 
+are typically locked in by layers of SaaS agreements and simply inaccessible to the wider developers and data scientists 
+communities.
+* Business can use specific DDC tools to granularly (down to specific fields/attributes) decrypt, enrich, filter, and 
+further anonymized, and prepared for processing by the data expert who can sample/validate the data via staking CERE 
+tokens and associated workflows..
+* Smart contracts powering the marketplace works directly with DDC to capture the granular steps of the workflow in 
+terms of access and execution, as well as chainlink oracles mapping to verifiable external processing. 
+* Every pieces of consumer data is already anonymized and multi-key encrypted with user and business keys during the 
+onboarding into DCC, Makreplace provides additional security and privacy measures such as federated data 
+sampling/modeling/learning and differential privacy to facilitate secure remote computing/collaborations.
+
+### NFT’s and Provenance
+As Cere Network will be supporting NFT tokens, or non-fungible tokens that can represent unique or fractionalized 
+ownership of real-world or digital assets for business and application, DDC offers a set of plug-and-play utility that 
+can be extended to any Substrate network:
+
+* Capture the critical event data relating to the issuance, transfers, and access of such tokens, ensuring that the 
+state changes of the NFT are captured both on chain and also into DDC, going through network consensus at the same time:
+    * TODO
+
+## Project Details
  
-#### Packages
+### Packages
 
 * **Cere DDC API** - public API for connecting Cere SDK/Substrate wallets.
 * **IPFS DHT Service** - associate/lookup wallets in IPFS clusters, part of the Cere SaaS.
@@ -30,7 +74,7 @@ to other developers and Substrate community.
 * **Data Viewer** - public web service where everyone who has private key can look at the decrypted data.
 * **Examples** - ready to work solutions/embeddable services for data interaction (working with IPFS, building data pipelines, crypto functions, validation, etc.).
 
-#### Cere DDC API operations
+### Cere DDC API operations
 1. Sign user/app operation, store associated blob file (_Cere SDK_)
     * Associate wallet with an IPFS cluster, Cere Mainnet by default (_IPFS DHT Service_)
     * Encrypt data (_Crypto Service_)
@@ -55,7 +99,7 @@ to other developers and Substrate community.
     * Tag for removing (_IPFS Service, IPFS DHT Service_)
     * Invalidate previous records
 
-#### Cere SDK
+### Cere SDK
 Package with a high-level API for sending events to the events stream. 
 Contains internal functions for signing and validation. 
 This is a recommended way of sending events to the DDC. 
@@ -63,7 +107,7 @@ Cere provides SDK for Javascript (can be used on the server-side NodeJS as well)
 Swift (for iOS/iPad applications), and Kotlin (for Android applications). 
 As a part of SaaS, Cere provides Sandbox for SDK where developers can send events using demo accounts.
 
-#### Crypto module
+### Crypto module
 This package contains high-level functions for encrypting and decrypting events. 
 Every event has scopes of data and each scope is encrypted or decrypted with a separate key. 
 It allows sharing only the part of the data with third parties by providing them keys for specific scopes.
@@ -86,7 +130,7 @@ which contains a high-level abstraction for working with cryptography in the Cer
 It’s also possible to implement your own crypto module. To be compatible with Cere Crypto, 
 you must use [Blake2](https://blake2.net/) function to create a derived key for the field using the master key and [XChaCha20-Poly1305](https://libsodium.gitbook.io/doc/secret-key_cryptography/aead/chacha20-poly1305/xchacha20-poly1305_construction) for encryption.
 
-### Ecosystem Fit 
+## Ecosystem Fit 
 Consider this project as a Decentralized Snowflake.
 
 ## Team
