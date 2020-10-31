@@ -62,6 +62,20 @@ state changes of the NFT are captured both on chain and also into DDC, going thr
     * TODO
 
 ## Project Details
+
+* Who does this help?
+    * Application developers who are working with Cere or Substrate networks.
+* How do they use it?
+    * Developers can seamlessly connect to Cere DDC using either Substrate wallet or Cere wallet (which is compatible 
+    with Substrate)
+    * Developers can use pre-built Cere packages like SDK and API clients. Or they can use Cere OpenAPI specifications 
+    to build their own libraries.
+    * Cere packages are building blocks for custom applications. We provide abstractions and implementations for encryption 
+    and signing functions, API communication and working with IPFS data.
+* How does DDC work with which network?
+    * Developers can configure wallets to use them with Cere Network (main or test net) or any other Substrate network 
+    that is connected to DDC. Cere services and DHT can be dynamically connected to any network. Besides that, Cere 
+    services provide call back functions to developers for more granular interaction with data pipeline.
  
 ### Packages
 
@@ -69,7 +83,7 @@ state changes of the NFT are captured both on chain and also into DDC, going thr
 
 * **Cere SDK** - user onboarding, sending events; public API with open sourced implementations for JavaScript, iOS and Android.
 * **Cere DDC API** - public API for connecting Cere SDK/Substrate wallets.
-* **Crypto Service** - encrypt/decrypt data, part of the Cere SaaS with public API.
+* **Encryption Service** - encrypt/decrypt data, part of the Cere SaaS with public API.
 
 #### Cere SaaS Services
 
@@ -88,17 +102,17 @@ state changes of the NFT are captured both on chain and also into DDC, going thr
     * _calls_ Cere DDC API
         * _calls_ IPFS DHT Service
         * _calls_ IPFS Service
-            * _uses_ Crypto Service
+            * _uses_ Encryption Service
         * _calls_ Blockchain Service
-            * _uses_ Crypto Service
+            * _uses_ Encryption Service
 * Data Viewer
     * _uses_ Cere DDC API
-    * _uses_ Crypto Service
+    * _uses_ Encryption Service
 
 ### Cere DDC API Operations
 1. Sign user/app operation, store associated blob file (_Cere SDK_)
     * Associate wallet with an IPFS cluster, Cere Mainnet by default (_IPFS DHT Service_)
-    * Encrypt data (_Crypto Service_)
+    * Encrypt data (_Encryption Service_)
     * Store data as individually signed & encrypted (_IPFS Service_)
     * Execute smart contract on the Cere Mainnet (_Cere Blockchain Service_)
         * Free/premium tiers
@@ -107,14 +121,14 @@ state changes of the NFT are captured both on chain and also into DDC, going thr
     * Per user
         * Find IPFS cluster with user data (_IPFS DHT Service_)
         * Traverse data tree (_IPFS Service_)
-        * Decrypt data (_Crypto Service_)
+        * Decrypt data (_Encryption Service_)
     * Per application
         * Traverse user wallets of the application (_IPFS DHT Service_)
         * Apply per user flow
 3. Show data
     * Find IPFS cluster with user data (_IPFS DHT Service_)
     * Traverse data tree (_IPFS Service_)
-    * Decrypt data (_Crypto Service_)
+    * Decrypt data (_Encryption Service_)
     * Show to user (_Data Viewer_)
 4. Remove data
     * Tag for removing (_IPFS Service, IPFS DHT Service_)
@@ -128,7 +142,7 @@ Cere provides SDK for Javascript (can be used on the server-side NodeJS as well)
 Swift (for iOS/iPad applications), and Kotlin (for Android applications). 
 As a part of SaaS, Cere provides Sandbox for SDK where developers can send events using demo accounts.
 
-### Crypto module
+### Encryption module
 This package contains high-level functions for encrypting and decrypting events. 
 Every event has scopes of data and each scope is encrypted or decrypted with a separate key. 
 It allows sharing only the part of the data with third parties by providing them keys for specific scopes.
@@ -170,12 +184,7 @@ Please provide the name and registered address of the legal entity executing the
 Please describe the team's relevant experience.  If the project involves development work, then we'd appreciated if you can single out a few interesting code commits made by team members on their past projects. For research-related grants, references to past publications and projects in a related domain are helpful.  
 
 ### Team Code Repos
-* https://github.com/cere-io - private packages, Cere SaaS Platform
-    * IPFS DHT
-    * IPFS Service
-    * Crypto Service
-    * Blockchain Service
-* https://github.com/Cerebellum-Network - public packages
+* https://github.com/Cerebellum-Network
     * [Cere Wallet API (SDK)](https://github.com/Cerebellum-Network/cere-wallet-api)
     * [Data Cloud API](https://github.com/Cerebellum-Network/data-cloud-api)
     * [Crypto Service API](https://github.com/Cerebellum-Network/crypto-service-api)
